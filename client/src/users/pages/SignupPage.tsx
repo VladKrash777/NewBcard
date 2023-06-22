@@ -1,19 +1,42 @@
 import Container from '@mui/material/Container'
 import { Navigate } from 'react-router-dom'
-import PageHeader from '../../components/PageHeader'
+import useForm from '../../forms/hooks/useForm'
 import ROUTES from '../../routes/routesModel'
+import UserForm from '../components/UserForm'
+import initialSignupForm from '../helpers/initialForms/initialSignupForm'
+import signupSchema from '../models/models/Joi/signupSchema'
+import { useUser } from '../providers/UserProvider'
+import useHandleUser from '../hooks/useHandleUsers'
 
 const SignupPage = () => {
-	const user = false
-	// const user = true
+	const { user } = useUser()
+	const { handleSignup } = useHandleUser()
+	const { value, ...rest } = useForm(
+		initialSignupForm,
+		signupSchema,
+		handleSignup
+	)
 
-	if (user) return <Navigate replace to={ROUTES.ROOT} />
+	if (user) return <Navigate replace to={ROUTES.CARDS} />
 
 	return (
-		<Container>
-			<PageHeader
-				title='Signup Page'
-				subtitle='In order to register, fill out the form and click the submit button'
+		<Container
+			sx={{
+				paddingTop: 8,
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+			}}
+		>
+			<UserForm
+				title='register user'
+				onSubmit={rest.onSubmit}
+				onReset={rest.handleReset}
+				onFormChange={rest.validateForm}
+				onInputChange={rest.handleInputChange}
+				data={value.data}
+				errors={value.errors}
+				setData={rest.setData}
 			/>
 		</Container>
 	)

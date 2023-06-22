@@ -14,6 +14,6 @@ export const getUser = () => {
 	return user
 }
 
-export const getToken = () => localStorage.getItem(TOKEN)
-
 export const removeToken = () => localStorage.removeItem(TOKEN)
+
+export const getToken = () => localStorage.getItem(TOKEN)

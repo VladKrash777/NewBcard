@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import useAxiosInterceptors from '../../hooks/useAxiosInterceptors'
+import useAxiosInterceptors from '../../hooks/useAxios'
 import CardInterface from '../models/interfaces/CardInterface'
-import { changeLikeStatus, createCard, deleteCard, editCard, getCard, getCards } from '../services/cardApi'
+import { changeLikeStatus, createCard, deleteCard, editCard, getCard, getCards, getMyCards } from '../services/cardApi'
 import { useUser } from '../../users/providers/UserProvider'
 import { useSnack } from '../../providers/SnackbarProvider'
 import { CardFromClientType, CardMapToModelType } from '../models/types/cardTypes'
@@ -61,7 +61,7 @@ const useCards = () => {
 			const cards = await getCards()
 			requestStatus(false, null, cards, null)
 		} catch (error) {
-			if (typeof error === 'string') requestStatus(false, error, null, null)
+			if (typeof error === 'string') requestStatus(false, error, null)
 		}
 	}
 
@@ -70,7 +70,7 @@ const useCards = () => {
 			setLoading(true)
 			await deleteCard(id)
 		} catch (error) {
-			if (typeof error === 'string') requestStatus(false, error, null, null)
+			if (typeof error === 'string') return requestStatus(false, error, null)
 		}
 	}
 
@@ -138,6 +138,16 @@ const useCards = () => {
 		}
 	}
 
+	const handleGetMyCards = useCallback(async () => {
+		try {
+			setLoading(true)
+			const cards = await getMyCards()
+			requestStatus(false, null, cards)
+		} catch (error) {
+			if (typeof error === 'string') return requestStatus(false, error, null)
+		}
+	}, [])
+
 	const value = useMemo(() => {
 		return { cards, card, isLoading, error, filtredCards }
 	}, [cards, card, isLoading, error, filtredCards])
@@ -149,6 +159,7 @@ const useCards = () => {
 		handleDeleteCard,
 		handleLikeCard,
 		handleGetFavCards,
+		handleGetMyCards,
 		handleCreateCard,
 		handleUpdateCard,
 	}

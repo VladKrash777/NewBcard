@@ -7,7 +7,7 @@ import React, {
 	useState,
 } from 'react'
 import { TokenType } from '../models/types/userTypes'
-import { getUser } from '../services/localStorage'
+import { getUser } from '../service/localStorage'
 
 type ContextArgs = {
 	user: null | TokenType
@@ -26,13 +26,12 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
 	const [user, setUser] = useState<null | TokenType>(null)
 	const [token, setToken] = useState<null | string>(null)
 
-	
 	useEffect(() => {
 		if (!user) {
 			const userFromLocalStorage = getUser()
 			setUser(userFromLocalStorage)
-		// const tokenFromLocalStorage = getToken();
-		// setToken(tokenFromLocalStorage);
+			// const tokenFromLocalStorage = getToken();
+			// setToken(tokenFromLocalStorage);
 		}
 	}, [user])
 

@@ -1,17 +1,13 @@
 import { Button } from '@mui/material'
 import Container from '@mui/material/Container'
-import Joi from 'joi'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import Form from '../../forms/components/Form'
 import Input from '../../forms/components/Input'
 import useForm from '../../forms/hooks/useForm'
 import ROUTES from '../../routes/routesModel'
 import initialLoginForm from '../helpers/initialForms/initialLoginForm'
-import loginSchema from '../models/joi/loginSchema';
-import useHandleUser from '../hooks/useHandleUser'
-import { Navigate } from 'react-router-dom'
-
-
+import useHandleUser from '../hooks/useHandleUsers'
+import loginSchema from '../models/joi/loginSchema'
 
 type Data = {
 	email: string
@@ -20,7 +16,10 @@ type Data = {
 
 const LoginPage = () => {
 	const navigate = useNavigate()
-	const { handleLogin, value: { user } } = useHandleUser();
+	const {
+		handleLogin,
+		value: { user },
+	} = useHandleUser()
 	const { value, ...rest } = useForm(initialLoginForm, loginSchema, handleLogin)
 	const { data, errors } = value
 	const { handleInputChange, handleReset, onSubmit, validateForm } = rest
@@ -42,7 +41,7 @@ const LoginPage = () => {
 				onReset={handleReset}
 				onFormChange={validateForm}
 				spacing={1}
-				styles={{maxWidth: '450px'}}
+				styles={{ maxWidth: '450px' }}
 			>
 				<Input
 					label='email'
