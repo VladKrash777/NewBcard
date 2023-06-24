@@ -9,7 +9,7 @@ const normalizeCard = async (rawCard, userId) => {
 		alt: alt || "Business card image",
 	};
 
-	return {
+	return { 
 		...rawCard,
 		image,
 		address: {

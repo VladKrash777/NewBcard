@@ -1,69 +1,57 @@
-import { Button } from '@mui/material'
 import Container from '@mui/material/Container'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import Form from '../../forms/components/Form'
+import FormLink from '../../forms/components/FormLink'
 import Input from '../../forms/components/Input'
 import useForm from '../../forms/hooks/useForm'
 import ROUTES from '../../routes/routesModel'
 import initialLoginForm from '../helpers/initialForms/initialLoginForm'
-import useHandleUser from '../hooks/useHandleUsers'
+import useHandleUsers from '../hooks/useHandleUsers'
 import loginSchema from '../models/joi/loginSchema'
-
-type Data = {
-	email: string
-	password: string
-}
+import { useUser } from '../providers/UserProvider'
 
 const LoginPage = () => {
-	const navigate = useNavigate()
-	const {
-		handleLogin,
-		value: { user },
-	} = useHandleUser()
-	const { value, ...rest } = useForm(initialLoginForm, loginSchema, handleLogin)
-	const { data, errors } = value
-	const { handleInputChange, handleReset, onSubmit, validateForm } = rest
+	const { user } = useUser()
+	const { handleLogin } = useHandleUsers()
 
-	if (user) return <Navigate replace to={ROUTES.ROOT} />
+	const { value, ...rest } = useForm(initialLoginForm, loginSchema, handleLogin)
+
+	if (user) return <Navigate replace to={ROUTES.CARDS} />
 
 	return (
 		<Container
 			sx={{
-				height: '80vh',
+				paddingTop: 8,
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
 			}}
 		>
 			<Form
-				title='Login'
-				onSubmit={onSubmit}
-				onReset={handleReset}
-				onFormChange={validateForm}
-				spacing={1}
+				onSubmit={rest.onSubmit}
+				onReset={rest.handleReset}
+				onFormChange={rest.validateForm}
+				title='login'
 				styles={{ maxWidth: '450px' }}
+				to={ROUTES.CARDS}
 			>
 				<Input
 					label='email'
 					name='email'
 					type='email'
-					data={data}
-					error={errors.email}
-					onInputChange={handleInputChange}
+					error={value.errors.email}
+					onInputChange={rest.handleInputChange}
+					data={value.data}
 				/>
 				<Input
 					label='password'
 					name='password'
 					type='password'
-					data={data}
-					error={errors.password}
-					onInputChange={handleInputChange}
+					error={value.errors.password}
+					onInputChange={rest.handleInputChange}
+					data={value.data}
 				/>
-
-				<Button variant='text' onClick={() => navigate(ROUTES.SIGNUP)}>
-					{' '}
-					register...
-				</Button>
+				<FormLink text='Did not registered yet?' to={ROUTES.SIGNUP} />
 			</Form>
 		</Container>
 	)
