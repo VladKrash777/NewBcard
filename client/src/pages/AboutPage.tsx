@@ -7,28 +7,39 @@ const AboutPage = () => {
 		<Container maxWidth='lg'>
 			<PageHeader
 				title='About Page'
-				subtitle='On this page you can find explanations about using the application'
+				subtitle=''
 			/>
 
 			<Grid container spacing={2}>
-				<Grid item xs={12} md={8} alignSelf='center'>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,
-					repellendus nostrum. Dolorem voluptatem dolor ipsam, ab voluptates
-					laboriosam qui voluptate cum consectetur exercitationem, tempore
-					facere quod iste nemo modi rerum natus libero cupiditate quidem esse
-					soluta assumenda veritatis porro fuga? Officiis voluptatem ex odio
-					itaque. Delectus, quod qui eligendi cupiditate, asperiores ratione
-					iusto aspernatur veniam accusamus molestiae ipsum, dignissimos
-					voluptatem perferendis quibusdam! Accusamus consequatur tenetur
-					provident odio magni, debitis placeat commodi cupiditate? Eum officia
-					fuga corrupti aut adipisci totam? Voluptatum fugiat, perspiciatis
-					eveniet ad repellat molestiae eligendi aliquam ratione nostrum est
-					quia ab et, mollitia blanditiis reiciendis minus deserunt eos. Vitae,
-					reiciendis sunt autem, error illum, deleniti ratione quos doloremque
-					accusantium in ipsa rem placeat! Assumenda quibusdam tenetur
-					repellendus quod commodi! Ducimus eaque ratione non sint nulla rem
-					impedit voluptas tenetur labore, enim adipisci voluptate accusamus.
-					Eius, velit nesciunt tempore reprehenderit hic sint, adipisci iure
+				<Grid item xs={12} md={8} fontSize={19} alignSelf='center'>
+					In today's digital age, it's essential for businesses to have a strong
+					online presence. One way to enhance your digital representation is
+					through well-designed and professional business cards. However,
+					instead of the traditional paper cards, there are now websites that
+					allow you to create virtual business cards that can be easily shared
+					online. These websites provide user-friendly platforms where you can
+					customize and design your own digital business card. You can choose
+					from a wide range of templates, colors, fonts, and layouts to create a
+					card that aligns with your brand identity. The flexibility of these
+					platforms allows you to showcase your creativity and create a unique
+					card that stands out from the crowd. One of the advantages of digital
+					business cards is their accessibility. They can be easily shared via
+					email, social media platforms, QR codes, or embedded on websites. This
+					makes it convenient for potential clients or customers to access your
+					contact information and learn more about your business with just a
+					click. Another benefit of digital business cards is their interactive
+					features. Some platforms offer options to include clickable links to
+					your website, social media profiles, or product/service pages. This
+					interactivity can help drive traffic to your online platforms and
+					increase engagement with your target audience. Furthermore, digital
+					business cards are eco-friendly, as they eliminate the need for
+					printing on paper. This not only reduces waste but also minimizes
+					costs associated with printing and reprinting traditional business
+					cards. By using these online platforms, you can create a digital
+					business card that represents your business professionally and
+					effectively. It's a modern and efficient way to make a lasting
+					impression on potential clients or customers and build connections in
+					the digital realm.
 				</Grid>
 				<Grid
 					item
