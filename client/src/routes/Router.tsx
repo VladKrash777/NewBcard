@@ -62,6 +62,7 @@ import FormTest from '../sandbox/forms/FormTest'
 import FavCardsPage from '../cards/pages/FavCardsPage'
 import MyCardsPage from '../cards/pages/MyCardsPage'
 import CreateCardPage from '../cards/pages/CreateCardPage'
+import EditProfile from '../users/pages/EditProfile'
 
 
 const Router = () => {
@@ -72,6 +73,7 @@ const Router = () => {
 			<Route path={ROUTES.FAV_CARDS} element={<FavCardsPage />} />
 			<Route path={ROUTES.MY_CARDS} element={<MyCardsPage />} />
 			<Route path={ROUTES.CREATE_CARD} element={<CreateCardPage />} />
+			<Route path={ROUTES.EDIT_PROFILE} element={<EditProfile />} />
 			<Route
 				path={`${ROUTES.CARD_DETAILS}/:cardId`}
 				element={<CardDetailsPage />}

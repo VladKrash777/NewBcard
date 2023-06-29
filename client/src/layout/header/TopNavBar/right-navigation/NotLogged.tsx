@@ -1,16 +1,15 @@
-import React from "react";
-import Box from "@mui/material/Box";
+import Box from '@mui/material/Box'
 
-import NavItem from "../../../components/NavItem";
-import ROUTES from "../../../../routes/routesModel";
+import ROUTES from '../../../../routes/routesModel'
+import NavItem from '../../../components/NavItem'
 
 const NotLogged = () => {
-  return (
-    <Box>
-      <NavItem label="signup" to={ROUTES.SIGNUP} />
-      <NavItem label="login" to={ROUTES.LOGIN} />
-    </Box>
-  );
-};
+	return (
+		<Box>
+			<NavItem label='signup' to={ROUTES.SIGNUP} />
+			<NavItem label='login' to={ROUTES.LOGIN} />
+		</Box>
+	)
+}
 
-export default NotLogged;
+export default NotLogged
