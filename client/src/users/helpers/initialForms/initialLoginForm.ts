@@ -1,6 +1,6 @@
 const initialLoginForm = {
-  email: "",
-  password: "",
-};
+	email: '',
+	password: '',
+}
 
-export default initialLoginForm;
+export default initialLoginForm

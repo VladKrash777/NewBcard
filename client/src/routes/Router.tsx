@@ -59,6 +59,9 @@ import EventsMenu from '../sandbox/events/EventsMenu'
 import StringInterpolation from '../sandbox/components/StringInterpolation'
 import SandboxComponents from '../sandbox/components/SandboxComponents'
 import FormTest from '../sandbox/forms/FormTest'
+import FavCardsPage from '../cards/pages/FavCardsPage'
+import MyCardsPage from '../cards/pages/MyCardsPage'
+import CreateCardPage from '../cards/pages/CreateCardPage'
 
 
 const Router = () => {
@@ -66,6 +69,9 @@ const Router = () => {
 		<Routes>
 			<Route path={ROUTES.ROOT} element={<CardsPage />} />
 			<Route path={ROUTES.CARDS} element={<CardsPage />} />
+			<Route path={ROUTES.FAV_CARDS} element={<FavCardsPage />} />
+			<Route path={ROUTES.MY_CARDS} element={<MyCardsPage />} />
+			<Route path={ROUTES.CREATE_CARD} element={<CreateCardPage />} />
 			<Route
 				path={`${ROUTES.CARD_DETAILS}/:cardId`}
 				element={<CardDetailsPage />}

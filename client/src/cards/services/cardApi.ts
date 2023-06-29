@@ -79,4 +79,3 @@ export const changeLikeStatus = async (cardId: string) => {
 		if (axios.isAxiosError(error)) return Promise.reject(error.message)
 	}
 }
- 
