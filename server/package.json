@@ -1,5 +1,5 @@
 {
-	"name": "business_cards_app",
+	"name": "vlad_business_cards_app",
 	"version": "3.0.0",
 	"description": "Business cards app with MERN",
 	"main": "server.js",
@@ -8,7 +8,7 @@
 		"test": "node test.js",
 		"dev": "export || cross-env NODE_ENV=development&& nodemon ."
 	},
-	"author": "David Yakin",
+	"author": "Vlad Krash",
 	"license": "ISC",
 	"dependencies": {
 		"bcryptjs": "^2.4.3",

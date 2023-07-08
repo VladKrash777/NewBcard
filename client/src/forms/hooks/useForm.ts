@@ -56,12 +56,17 @@ const useForm = <TForm extends Record<string, unknown>>(
 		handleSubmit(data)
 	}, [handleSubmit, data])
 
+	const onEdit = useCallback(() => {
+		handleSubmit(data)
+	}, [handleSubmit, data])
+
 	const value = useMemo(() => {
 		return { data, errors }
 	}, [data, errors])
 
 	return {
 		value,
+		onEdit,
 		onSubmit,
 		handleInputChange,
 		handleReset,
@@ -71,4 +76,3 @@ const useForm = <TForm extends Record<string, unknown>>(
 }
 
 export default useForm
-

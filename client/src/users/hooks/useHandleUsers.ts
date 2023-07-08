@@ -9,7 +9,7 @@ import {
 	removeToken,
 	setTokenInLocalStorage,
 } from '../service/localStorage'
-import { login, signup } from '../service/userApi'
+import { edit, getUserFullData, login, signup } from '../service/userApi'
 import ROUTES from './../../routes/routesModel'
 
 const useHandleUsers = () => {
@@ -50,10 +50,37 @@ const useHandleUsers = () => {
 		[navigate, requestStatus, setToken]
 	)
 
+	const handleUserFullData = useCallback(async () => {
+		try {
+			const userFullData = await getUserFullData(user?._id)
+			return userFullData
+		} catch (error) {
+			if (typeof error === 'string') requestStatus(false, error, null)
+		}
+	}, [])
+
 	const handleLogout = useCallback(() => {
 		removeToken()
 		setUser(null)
 	}, [setUser])
+
+	const handleOnEdit = useCallback(
+		async (user: RegistrationForm, userId: string | undefined) => {
+			try {
+				setLoading(true)
+				const normalizedUser = normalizeUser(user)
+				await edit(normalizedUser, userId)
+				await handleLogin({
+					email: user.email,
+					password: user.password,
+				})
+				navigate(ROUTES.ROOT)
+			} catch (error) {
+				if (typeof error === 'string') requestStatus(false, error, null)
+			}
+		},
+		[]
+	)
 
 	const handleSignup = useCallback(
 		async (user: RegistrationForm) => {
@@ -81,6 +108,8 @@ const useHandleUsers = () => {
 		handleLogin,
 		handleLogout,
 		handleSignup,
+		handleOnEdit,
+		handleUserFullData,
 	}
 }
 

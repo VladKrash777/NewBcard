@@ -1,23 +1,28 @@
 import Container from '@mui/material/Container'
-import { Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import useForm from '../../forms/hooks/useForm'
-import ROUTES from '../../routes/routesModel'
 import UserForm from '../components/UserForm'
 import initialSignupForm from '../helpers/initialForms/initialSignupForm'
+import mapUserToModel from '../helpers/normalization/mapUserToModel'
+import useHandleUser from '../hooks/useHandleUsers'
 import signupSchema from '../models/models/Joi/signupSchema'
 import { useUser } from '../providers/UserProvider'
-import useHandleUser from '../hooks/useHandleUsers'
 
 const EditProfile = () => {
 	const { user } = useUser()
-	const { handleSignup } = useHandleUser()
-	const { value, ...rest } = useForm(
+	const { handleSignup, handleUserFullData, handleOnEdit } = useHandleUser()
+	const { value, setData, ...rest } = useForm(
 		initialSignupForm,
 		signupSchema,
 		handleSignup
 	)
 
-	// if (user) return <Navigate replace to={ROUTES.CARDS} />
+	useEffect(() => {
+		handleUserFullData().then((responseUserProfile) => {
+			const { _id, ...restResponse } = mapUserToModel(responseUserProfile)
+			setData(restResponse)
+		})
+	}, [])
 
 	return (
 		<Container
@@ -28,16 +33,16 @@ const EditProfile = () => {
 				alignItems: 'center',
 			}}
 		>
-			{/* <UserForm
-				title='register user'
-				onSubmit={rest.onSubmit}
+			<UserForm
+				title='Edit Profile'
+				onSubmit={() => handleOnEdit(value.data, user?._id)}
 				onReset={rest.handleReset}
 				onFormChange={rest.validateForm}
 				onInputChange={rest.handleInputChange}
 				data={value.data}
 				errors={value.errors}
-				setData={rest.setData}
-			/> */}
+				setData={setData}
+			/>
 		</Container>
 	)
 }

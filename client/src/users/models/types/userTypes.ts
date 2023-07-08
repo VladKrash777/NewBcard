@@ -55,4 +55,24 @@ export type UserRegistered = {
 	_id: string
 }
 
+export type UserFromClient = {
+	_id: string
+	first: string
+	middle: string
+	last: string
+	phone: string
+	email: string
+	password: string
+	url: string
+	alt: string
+
+	state: string
+	country: string
+	city: string
+	street: string
+	houseNumber: string
+	zip: string
+	isBusiness: boolean
+}
+
 export default UserType

@@ -2,7 +2,7 @@ import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Grid from '@mui/material/Grid'
 import Joi from 'joi'
-import React, { ChangeEvent, FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 import Form from '../../forms/components/Form'
 import FormLink from '../../forms/components/FormLink'
 import Input from '../../forms/components/Input'
@@ -181,4 +181,4 @@ const UserForm: FC<Props> = ({
 	)
 }
 
-export default React.memo(UserForm)
+export default UserForm
